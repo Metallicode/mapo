@@ -1,0 +1,227 @@
+﻿
+
+:root {
+    --C1: #352c2f;
+    --C2: #fcdb42;
+    --C3: #9f37d0;
+    --C4: #ea5656;
+    --C5: #f6f2c3;
+}
+
+body {
+    font-family: 'Varela Round', sans-serif;
+    overflow: hidden;
+    margin: 0;
+    line-height: 1.1;
+}
+
+#open_camera_btn {
+    margin-top:10px;
+    width:370px;
+    height:370px;
+}
+
+.leaflet-control-zoom{
+
+    visibility:hidden;
+
+}
+
+.save_selector_controls {
+    width: 300px;
+    height: 150px;
+    font-size: 5em;
+    margin: 20px;
+    border-radius: 15px;
+}
+
+#cancel_save_btn{
+
+    float:left;
+
+}
+
+#finish_save_btn {
+    float: right;
+}
+
+
+#top_nav_bar {
+    position: absolute;
+    top: 0px;
+    left: 0;
+    width: 100%;
+    background-color: var(--C1);
+}
+
+.top_nav_text {
+    margin: 40px;
+    font-size: 5em;
+    color: var(--C5);
+}
+
+#app_logo{
+
+    float:left;
+}
+#start_login_btn {
+    float: right;
+}
+
+#userLoginDiv{
+
+}
+
+#login_btn_control{
+    margin-top:80%;
+
+}
+
+
+.pop_up_item {
+    font-size: 2.2em;
+}
+
+.login_controls {
+    width: 90%;
+    height: 150px;
+    font-size: 5em;
+    margin: 40px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#mapDiv {
+    position: absolute;
+    top: 160px;
+    left: 0;
+    width: 100%;
+    height: 97%;
+    /*background-color: var(--C2);*/
+    z-index:0;
+}
+
+#chatDiv {
+    position: absolute;
+    top: 3000px;
+    left: 0;
+    width: 100%;
+    height: 97%;
+    color: var(--C1);
+    background-color: var(--C2);
+    opacity: 0.85;
+}
+
+#aboutDiv {
+    position: absolute;
+    top: 3000px;
+    left: 0;
+    width: 100%;
+    height: 97%;
+    font-size:4em;
+    color: var(--C1);
+    background-color: var(--C2);
+    padding:30px;
+}
+
+
+#aboutImage{
+    width:80%;
+    margin:20px;
+
+}
+
+#aboutDiv h1 {
+    font-size: 2em;
+    color: var(--C1);
+}
+#aboutDiv h2 {
+    font-size: 1em;
+    color: var(--C1);
+}
+
+#userLoginDiv {
+    position: absolute;
+    top: 3000px;
+    left: 0;
+    width: 100%;
+    height: 97%;
+    background-color: var(--C2);
+
+}
+
+#new_item_texterea {
+    width: 90%;
+    height: 300px;
+    font-size: 5em;
+    margin: 50px;
+    border-radius: 10px;
+}
+
+#newItemDiv {
+    position: absolute;
+    top: 3000px;
+    left: 0;
+    width: 100%;
+    height: 97%;
+    background-color: var(--C2);
+}
+
+
+#camDiv {
+    position: absolute;
+    top: 3000px;
+    left: 0;
+    width: 100%;
+    height: 97%;
+    background-color: var(--C2);
+}
+
+
+#addNewDiv {
+    background-color: var(--C4);
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    font-size: 8em;
+    margin: 15px;
+    height: 160px;
+    width: 160px;
+    padding: 25px;
+    border-radius: 50%;
+    color: #ede8f4;
+}
+
+#cam_click {
+    background-color: var(--C4);
+    position: absolute;
+    bottom: 150px;
+    left: 40%;
+    font-size: 8em;
+    margin: 15px;
+    height: 160px;
+    width: 160px;
+    padding: 25px;
+    border-radius: 50%;
+    color: #ede8f4;
+}
+
+.chatItem {
+    border-radius: 20px;
+    background-color: var(--C5);
+    padding: 30px;
+    margin: 15px;
+}
+
+.chatItemUserName{
+    font-size:3em;
+
+}
+
+.chatItemMsgText {
+    font-size: 4em;
+}
+
+.chatItemMessageDate {
+    font-size: 3em;
+}

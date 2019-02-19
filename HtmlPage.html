@@ -1,0 +1,154 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <!--bootstrap cdn-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!--leaflet maps-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+            integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+            crossorigin=""></script>
+
+
+    <!--google font-->
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
+
+    <link href="style/appStyle.css" rel="stylesheet" />
+    <title>Mapo</title>
+
+</head>
+<body>
+    <div id="top_nav_bar">
+        <h1 class="top_nav_text" id="app_logo">
+            Mapo
+        </h1>
+        <h1 class="top_nav_text" id="start_login_btn">
+            Login
+        </h1>
+    </div>
+
+    <div id="mapDiv">
+        
+    </div>
+
+    <div id="chatDiv">
+
+
+    </div>
+
+    <div id="addNewDiv">
+        <center id="addPlus">
+            +
+        </center>
+    </div>
+
+    <div id="userLoginDiv">
+        <input class="login_controls" id="login_control" type="text" placeholder="login@your.mail" />
+        <input class="login_controls" id="password_control" type="password" placeholder="pa$$word" />
+        <input class="login_controls btn-primary btn" id="login_btn_control" type="button" value="login" />
+    </div>
+
+    <div id="newItemDiv">
+        <textarea id="new_item_texterea" rows="4" cols="40"></textarea>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <input type="image" src="assets/sticker01.png" itemType="01" id="b01" class="itemSelectorButtons" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="image" src="assets/sticker02.png" itemType="02" id="b02" class="itemSelectorButtons" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="image" src="assets/sticker03.png" itemType="03" id="b03" class="itemSelectorButtons" />
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <input type="image" src="assets/sticker04.png" itemType="04" id="b04" class="itemSelectorButtons" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="image" src="assets/sticker05.png" itemType="05" id="b05" class="itemSelectorButtons" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="image" src="assets/sticker06.png" itemType="06" id="b06" class="itemSelectorButtons" />
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <input type="image" src="assets/sticker07.png" itemType="07" id="b07" class="itemSelectorButtons" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="image" src="assets/sticker08.png" itemType="08" id="b08" class="itemSelectorButtons" />
+                </div>
+                <div class="col-sm-4">
+                    <input type="image" src="assets/sticker09.png" itemType="09" id="b09" class="itemSelectorButtons" />
+                </div>
+            </div>
+
+        </div>
+
+        <center>
+            <input id="open_camera_btn" type="image" src="assets/cam.png" />
+        </center>
+
+        <input class="save_selector_controls btn btn-secondary" id="cancel_save_btn" type="button" value="cancel" />
+        <input class="save_selector_controls btn btn-primary" id="finish_save_btn" type="button" value="save" />
+
+    </div>
+
+    <div id="camDiv">
+
+        <div>
+
+        </div>
+
+        <center>
+            <div id="cam_click">
+
+
+
+            </div>
+        </center>
+
+
+    </div>
+
+
+    <div id="aboutDiv">
+        <h1 id="about_title">
+            What is Mapo..?
+        </h1>
+        <h2 id="about_subtitle">
+            snap messages on a shared map with the peple around you.
+        </h2>
+        <hr />
+        <center>
+            <img id="aboutImage" src="assets/mock1.png" />
+        </center>
+        <br />
+        <p>
+            got a new sofa and left the old one in te street..? <br />
+            Take a picture of it and snap it's location on the map! <br />
+            now people in the neighborhood know about it! <br />
+
+        </p>
+    </div>
+
+    <!--jquery cdn-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+
+    <script src="scripts/appScript.js"></script>
+    <script src="scripts/mapScript.js"></script>
+
+</body>
+</html>
