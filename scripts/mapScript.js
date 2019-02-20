@@ -32,6 +32,11 @@ function reset_map_to_location(set_to_this_location, map_zoom_value) {
 
 }
 
+function set_map_view_to_location(loc, map_zoom_value) {
+
+    mymap.setView([loc.lat, loc.lon], map_zoom_value);
+}
+
 function try_to_get_user_loc() {
 
     if (navigator.geolocation) {
@@ -136,13 +141,6 @@ function chat_item_click(e) {
 
 }
 
-function set_map_view_to_location(loc, map_zoom_value) {
-
-    mymap.setView([loc.lat, loc.lon], map_zoom_value);
-}
-
-
-
 function on_Marker_Click(marker_click_e) {
 
 
@@ -158,7 +156,7 @@ function remove_marker_from_map(marker) {
 function send_New_Item_To_Db(map_item) {
 
     newItem = {
-        text: $("#new_item_texterea").val(),
+        text: $("#new_item_texterea").val(),///
         type: map_item.type,
         location: map_item.location,
         available: true,

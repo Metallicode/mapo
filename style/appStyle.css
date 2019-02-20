@@ -27,6 +27,24 @@ body {
 
 }
 
+#learn_more_btn {
+    width: 400px;
+    height: 150px;
+    font-size: 1em;
+    margin-top: 80px;
+    border-radius: 15px;
+}
+
+#show_map_btn {
+    position: absolute;
+    width: 400px;
+    height: 150px;
+    font-size: 1em;
+    bottom: 150px;
+    left: 30%;
+    border-radius: 15px;
+}
+
 .save_selector_controls {
     width: 300px;
     height: 150px;
@@ -118,10 +136,11 @@ body {
     left: 0;
     width: 100%;
     height: 97%;
-    font-size:4em;
+    font-size: 4em;
     color: var(--C1);
     background-color: var(--C2);
-    padding:30px;
+    padding: 30px;
+    opacity: 0.85;
 }
 
 
@@ -147,7 +166,7 @@ body {
     width: 100%;
     height: 97%;
     background-color: var(--C2);
-
+    opacity: 0.85;
 }
 
 #new_item_texterea {
@@ -157,6 +176,20 @@ body {
     margin: 50px;
     border-radius: 10px;
 }
+
+
+#learnMoreDiv {
+    position: absolute;
+    top: 3000px;
+    left: 0;
+    width: 100%;
+    height: 97%;
+    font-size: 4em;
+    padding: 30px;
+    background-color: var(--C2);
+    opacity: 0.85;
+}
+
 
 #newItemDiv {
     position: absolute;
@@ -176,6 +209,9 @@ body {
     height: 97%;
     background-color: var(--C2);
 }
+
+
+
 
 
 #addNewDiv {
