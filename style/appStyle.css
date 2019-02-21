@@ -53,14 +53,22 @@ body {
     border-radius: 15px;
 }
 
-#cancel_save_btn{
-
-    float:left;
-
+#cancel_save_btn {
+    float: left;
+    background: url(../assets/x.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: solid 3px #352c2f;
+    border-radius:15px;
 }
 
 #finish_save_btn {
     float: right;
+    background: url(../assets/v.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: solid 3px #352c2f;
+    border-radius: 15px;
 }
 
 
@@ -84,6 +92,7 @@ body {
 }
 #start_login_btn {
     float: right;
+    margin-top:32px;
 }
 
 #userLoginDiv{
@@ -128,6 +137,7 @@ body {
     color: var(--C1);
     background-color: var(--C2);
     opacity: 0.85;
+    overflow-y: scroll;
 }
 
 #aboutDiv {
@@ -201,6 +211,68 @@ body {
 }
 
 
+#showItemDiv {
+    position: absolute;
+    top: 3000px;
+    left: 0;
+    width: 100%;
+    height: 97%;
+    background-color: var(--C2);
+    padding: 20px;
+    font-size: 5em;
+}
+
+.show_item_btns{
+    padding:20px;
+ 
+ 
+}
+
+#show_btnz_div{
+
+    position:absolute;
+    bottom:150px;
+    left:130px;
+}
+
+#show_btnz_div .raw{
+    align-items:center;
+}
+
+#show_item_user_name {
+    font-size: 1.5em;
+}
+
+#show_item_date {
+    font-size: 1em;
+}
+
+
+#show_item_img {
+    width: 70%;
+    
+}
+
+
+#show_item_text {
+    margin-top:10px;
+    overflow-y: scroll;
+}
+
+
+
+
+#userDiv {
+    position: absolute;
+    top: 3000px;
+    left: 0;
+    width: 100%;
+    height: 97%;
+    background-color: var(--C2);
+}
+
+
+
 #camDiv {
     position: absolute;
     top: 3000px;
@@ -249,13 +321,25 @@ body {
     margin: 15px;
 }
 
-.chatItemUserName{
-    font-size:3em;
+.chatItemTime {
+    float: right;
+    font-size: 2em;
+}
+
+.chatItemHeaders{
+
+    display:inline-block;
+
+}
+
+.chatItemUserName {
+    font-size: 4em;
 
 }
 
 .chatItemMsgText {
-    font-size: 4em;
+    font-size: 5em;
+    text-align:center;
 }
 
 .chatItemMessageDate {

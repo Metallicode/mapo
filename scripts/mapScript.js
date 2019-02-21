@@ -1,41 +1,26 @@
 ﻿var GLOBAL_LOCATION = { lat: 32.0466879, lon: 34.7796028 };
 var USER_LOCATION = { lat: null, lon: null };
 
-var POST_NEW_ITEM_URL = "";
-var GET_ITEMS_FROM_DB_URL = "";
+var POST_NEW_ITEM_URL = "https://mystuffapp.eu-gb.mybluemix.net/new_item";
+var GET_ITEMS_FROM_DB_URL = "https://mystuffapp.eu-gb.mybluemix.net/get_items";
+var GET_IMAGE_FROM_ID_URL = "assets/";
+
 
 var mymap = null;
 
 var result_items_from_server = null;
 
-var all_current_map_markers = null;
-var all_current_chat_items = null;
 
 $(function () {
 
     reset_map_to_location(GLOBAL_LOCATION, 17);
+    try_to_get_user_loc();
 
 });
 
 
-function reset_map_to_location(set_to_this_location, map_zoom_value) {
 
-    mymap = L.map('mapDiv').setView([set_to_this_location.lat, set_to_this_location.lon], map_zoom_value);
-    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZ2NpdHkiLCJhIjoiY2pzMHExeGIzMW05OTQ0dWtvNmIxMWp2NyJ9.4AZhnhFxf_Wyrp8-9FjgWg', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        id: 'mapbox.streets',
-        accessToken: 'pk.eyJ1IjoiZ2NpdHkiLCJhIjoiY2pzMHExeGIzMW05OTQ0dWtvNmIxMWp2NyJ9.4AZhnhFxf_Wyrp8-9FjgWg'
-    }).addTo(mymap);
-
-    //mymap.on('click', onMapClick);
-
-}
-
-function set_map_view_to_location(loc, map_zoom_value) {
-
-    mymap.setView([loc.lat, loc.lon], map_zoom_value);
-}
+///LOCATION FUNCTIONS
 
 function try_to_get_user_loc() {
 
@@ -52,6 +37,11 @@ function set_User_Position(user_position) {
     USER_LOCATION.lat = user_position.coords.latitude;
     USER_LOCATION.lon = user_position.coords.longitude;
 
+
+    set_map_view_to_location(USER_LOCATION, 17);
+
+    get_Data_From_Db(USER_LOCATION);
+
 }
 
 function convert_location_string_to_obj(locString) {
@@ -64,95 +54,90 @@ function convert_location_string_to_obj(locString) {
 
 }
 
-function put_marker_on_map_from_item(map_item) {
 
-    var myIcon = L.icon({
-        iconUrl: "assets/" +map_item.type+".png",
-        iconSize: [150, 150],
-        iconAnchor: [36, 74],
-        popupAnchor: [-3, -76],
-        shadowSize: [68, 95],
-        shadowAnchor: [22, 94]
-    });
 
-    map_item_location = convert_location_string_to_obj(map_item.location)
-    
 
-    var marker = L.marker([map_item_location.lat, map_item_location.lon], { icon: myIcon }).addTo(mymap);
-    marker.on('click', on_Marker_Click);
-    marker.bindPopup("<p class='pop_up_item'>" + map_item.text + "</p>");
 
-    return marker;
+///DATA FUNCTIONS 
 
+function isNullOrWhitespace(input) {
+
+    if (typeof input === 'undefined' || input == null) return true;
+
+    return input.replace(/\s/g, '').length < 1;
 }
 
-function populate_local_items_arrays_with_data_from_db() {
+function return_time_sorted_mapo_items_from_res_object() {
 
     things_to_put = result_items_from_server.hits.hits;
+    mapo_items = Array();
 
-    all_current_map_markers = Array();
-    all_current_chat_items = Array();
+
+
 
     for (i = 0; i < things_to_put.length; i++) {
 
-        chat_item = things_to_put[i]._source;
+        mapo_item = things_to_put[i]._source;
 
-        chatItem = {
 
-            time: chat_item.time,
-            user: chat_item.createdByUser,
-            text: chat_item.itemText
+        if (!isNullOrWhitespace(mapo_item.itemType)) {
+
+            new_mapo_item = {
+
+                id: things_to_put[i]._id,
+                type: mapo_item.itemType,
+                location: mapo_item.location,
+                time: mapo_item.time,
+                user: mapo_item.createdByUser,
+                text: mapo_item.itemText
+
+            }
+
+            mapo_items.push(new_mapo_item);
 
         }
 
-        all_current_chat_items.push(chatItem);
+
 
     }
 
+    mapo_items.sort(function (a, b) { return b.time - a.time });
 
-
-    all_current_chat_items.sort(function (a, b) { return b.time - a.time });
-
-
-}
-
-function put_chat_item_in_chat_from_item(chat_item) {
-
-    chat_item_location = convert_location_string_to_obj(chat_item.location)
-
-    new_chat_html = '<div onclick="chat_item_click(event)" class="chatItem" chat_item_lat=' + chat_item_location.lat
-        + ' chat_item_lon=' + chat_item_location.lon
-        + '><h3 class="chatItemUserName">' + chat_item.time
-        + '</h3 ><h2 class="chatItemMsgText">' + chat_item.text
-        + '</h2><p class="chatItemMessageDate">' + chat_item.text + '</p></div>';
-
-    $("#chatDiv").append(new_chat_html);
+    return mapo_items;
 
 }
 
-function chat_item_click(e) {
+function add_mapo_item_to_chat_and_map(mapo_item) {
 
-    c_location = {
-        lat: e.target.closest('.chatItem').getAttribute("chat_item_lat"),
-        lon: e.target.closest('.chatItem').getAttribute("chat_item_lon")
+    put_marker_on_map(return_marker_from_mapo_item(mapo_item));
+    put_chat_element_in_chat(return_chat_element_from_mapo_item(mapo_item));
+
+}
+
+function get_mapo_item_by_id(mapo_id) {
+
+    mapo_items = return_time_sorted_mapo_items_from_res_object();
+
+    
+
+    for (var i = 0; i < mapo_items.length; i++) {
+
+        if (mapo_id == mapo_items[i].id) {
+
+            return mapo_items[i];
+
+        }
+
+
     }
 
-    set_map_view_to_location(c_location, 18);
+    return null;
 
 }
 
-function on_Marker_Click(marker_click_e) {
 
 
-
-}
-
-function remove_marker_from_map(marker) {
-
-    L.marker([m_lat, m_lon], { icon: myIcon }).removeFrom(mymap);
-
-}
-
+///DB FUNCTIONS
 function send_New_Item_To_Db(map_item) {
 
     newItem = {
@@ -207,6 +192,114 @@ function success_Get_func(res) {
 
     console.log("GET from db ok!!");
     result_items_from_server = res;
+    pupulate_app_data();
+}
+
+function pupulate_app_data() {
+
+    mapo_items = return_time_sorted_mapo_items_from_res_object();
+
+    for (var i = 0; i < mapo_items.length; i++) {
+        add_mapo_item_to_chat_and_map(mapo_items[i]);
+    }
+
+
+}
+
+
+
+
+///MAP FUNCTIONS
+
+function reset_map_to_location(set_to_this_location, map_zoom_value) {
+
+    mymap = L.map('mapDiv').setView([set_to_this_location.lat, set_to_this_location.lon], map_zoom_value);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiZ2NpdHkiLCJhIjoiY2pzMHExeGIzMW05OTQ0dWtvNmIxMWp2NyJ9.4AZhnhFxf_Wyrp8-9FjgWg', {
+        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        maxZoom: 19,
+        id: 'mapbox.streets',
+        accessToken: 'pk.eyJ1IjoiZ2NpdHkiLCJhIjoiY2pzMHExeGIzMW05OTQ0dWtvNmIxMWp2NyJ9.4AZhnhFxf_Wyrp8-9FjgWg'
+    }).addTo(mymap);
+
+    mymap.on('dblclick', onMapDoubleClick);
+    //mymap.on('click', onMapClick);
+
+}
+
+function set_map_view_to_location(loc, map_zoom_value) {
+
+    mymap.setView([loc.lat, loc.lon], map_zoom_value);
+}
+
+function onMapDoubleClick(e) {
+    console.log("double click!" + e);
+    if (USER_LOCATION.lat != null && USER_LOCATION.lon != null) {
+
+        set_map_view_to_location(USER_LOCATION);
+    }
+    
+    
+
+}
+
+
+
+
+///MARKER FUNCTIONS
+
+function return_marker_from_mapo_item(mapo_item) {
+
+    var myIcon = L.icon({
+        iconUrl: "assets/" +mapo_item.type+".png",
+        iconSize: [150, 150],
+        iconAnchor: [36, 74],
+        popupAnchor: [-3, -76],
+        shadowSize: [68, 95],
+        shadowAnchor: [22, 94]
+    });
+
+    mapo_item_location = convert_location_string_to_obj(mapo_item.location)
+    
+
+    var marker = L.marker([mapo_item_location.lat, mapo_item_location.lon], { icon: myIcon });
+    marker.on('click', on_Marker_Click);
+    marker.on('dblclick', on_Marker_Double_Click);
+    marker.bindPopup("<p class='pop_up_item'>" + mapo_item.text + "</p>");
+
+    marker.get_mapo_item_id = function(){
+
+        return mapo_item.id;
+
+    }
+
+    return marker;
+
+}
+
+function on_Marker_Double_Click(marker_click_e) {
+
+    console.log("Marker_Double_Click " + marker_click_e.target.get_mapo_item_id());
+
+    mapo_item = get_mapo_item_by_id(marker_click_e.target.get_mapo_item_id());
+
+    show_item_on_marker_click(marker_click_e, mapo_item);
+}
+
+function on_Marker_Click(marker_click_e) {
+
+    console.log("on_Marker_Click");
+
+}
+
+function put_marker_on_map(marker) {
+
+    marker.addTo(mymap);
+
+}
+
+function remove_marker_from_map(marker) {
+
+    marker.removeFrom(mymap);
 
 }
 
@@ -219,12 +312,60 @@ function clear_map_markers() {
 }
 
 
-//TESTING STUFF
+
+
+///CHAT FUNCTIONS
+
+function return_time_string_from_timestamp(timestamp) {
+    return new Date((timestamp * 1)).toLocaleString();
+}
+
+
+function return_chat_element_from_mapo_item(mapo_item) {
+
+    chat_item_location = convert_location_string_to_obj(mapo_item.location);
+
+    chat_item_time_string = return_time_string_from_timestamp(mapo_item.time);
+
+    new_chat_html = '<div onclick="chat_item_click(event)" class="chatItem" chat_item_lat=' + chat_item_location.lat
+        + ' chat_item_lon=' + chat_item_location.lon
+        + '><div class="chatItemHeaders"><h3 class="chatItemUserName">' + mapo_item.user
+        + '<h3 class="chatItemTime">' + chat_item_time_string
+        + '</h3 ></div><hr/><h2 class="chatItemMsgText">' + mapo_item.text
+        + '</h2></div>';
+
+    return new_chat_html;
+
+}
+
+function put_chat_element_in_chat(chat_element) {
+
+    $("#chatDiv").append(chat_element);
+
+}
+
+function chat_item_click(e) {
+
+    c_location = {
+        lat: e.target.closest('.chatItem').getAttribute("chat_item_lat"),
+        lon: e.target.closest('.chatItem').getAttribute("chat_item_lon")
+    }
+
+    set_map_view_to_location(c_location, 18);
+
+}
+
+
+
+
+
+///////////////TESTING STUFF
 
 function testMarker() {
 
     testItem = {
 
+        id: "testItem.png",
         type: "sticker13",
         location: "32.0466879, 34.7796028",
         time: "21/12/21",
@@ -232,7 +373,6 @@ function testMarker() {
         text: "this is a nice item!"
     }
 
-    put_marker_on_map_from_item(testItem);
-    put_chat_item_in_chat_from_item(testItem);
+    add_mapo_item_to_chat_and_map(testItem);
 
 }

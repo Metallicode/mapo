@@ -26,13 +26,14 @@
         <h1 class="top_nav_text" id="app_logo">
             Mapo
         </h1>
-        <h1 class="top_nav_text" id="start_login_btn">
+        <img src="assets/login.png" class="top_nav_text" id="start_login_btn"/>
+        <!--<h1 class="top_nav_text" id="start_login_btn">
             Login
-        </h1>
+        </h1>-->
     </div>
 
     <div id="mapDiv">
-        
+
     </div>
 
     <div id="chatDiv">
@@ -50,6 +51,14 @@
         <input class="login_controls" id="login_control" type="text" placeholder="login@your.mail" />
         <input class="login_controls" id="password_control" type="password" placeholder="pa$$word" />
         <input class="login_controls btn" id="login_btn_control" type="button" value="login" />
+    </div>
+
+    <div id="userDiv">
+
+        <h1>user element</h1>
+
+        <input class="login_controls btn" id="login_btn_control" type="button" value="login" />
+
     </div>
 
     <div id="newItemDiv">
@@ -99,8 +108,11 @@
             <input id="open_camera_btn" type="image" src="assets/cam.png" />
         </center>
 
-        <input class="save_selector_controls btn" id="cancel_save_btn" type="button" value="cancel" />
-        <input class="save_selector_controls btn" id="finish_save_btn" type="button" value="save" />
+
+
+
+        <input class="save_selector_controls btn" id="cancel_save_btn" type="button"  />
+        <input class="save_selector_controls btn" id="finish_save_btn" type="button"  />
 
     </div>
 
@@ -120,7 +132,6 @@
 
 
     </div>
-
 
     <div id="aboutDiv">
         <h1 id="about_title">
@@ -166,7 +177,7 @@
             <br />
             <p>
                 Local business can <a href="mailto:contact@mapo.me">contact Mapo</a> and get a special publicity service to target their local custumers.<br />
-          
+
 
             </p>
         </div>
@@ -175,6 +186,43 @@
             <input class="btn" id="show_map_btn" type="button" value="back to map" />
         </center>
     </div>
+
+    <div id="showItemDiv">
+        <h1 id="show_item_user_name"></h1>
+        <h2 id="show_item_date"></h2>
+        <hr />
+        <center>
+            <img id="show_item_img" src="assets/fakeItem.png" />
+        </center>
+
+        <p id="show_item_text"></p>
+        <br />
+        <div id="show_item_btn_container">
+           
+                <div class="container" id="show_btnz_div">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <input class="show_item_btns" id="show_item_exit_btn" type="button" value="Exit" />
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="show_item_btns" id="show_item_flag_btn" type="button" value="Flag" />
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="show_item_btns" id="show_item_like_btn" type="button" value="Like" />
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+            
+        </div>
+
+  
+   
+    </div>
+
 
     <!--jquery cdn-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"

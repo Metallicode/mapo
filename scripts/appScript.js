@@ -4,40 +4,50 @@ var NEW_ITEM_DIV = false;
 var CAM_DIV = false;
 var ABOUT_DIV = false;
 var LEARN_MORE_DIV = false;
+var USER_DIV = false;
+var SHOW_ITEM_DIV = false;
+
 
 $(function () {
 
     $("#start_login_btn").click(function (e) {
-        console.log("start_login_btn");
 
-        if (CHAT_IS_UP) {
-            $("#chatDiv").animate({ top: '3000px' });
+        if (!NEW_ITEM_DIV) {
 
-            CHAT_IS_UP = false;
+            console.log("start_login_btn");
 
+            if (CHAT_IS_UP) {
+                $("#chatDiv").animate({ top: '3000px' });
+
+                CHAT_IS_UP = false;
+            }
+
+            if (SHOW_ITEM_DIV) {
+                $("#showItemDiv").animate({ top: '3000px' });
+                SHOW_ITEM_DIV = false;
+            }
+
+            if (ABOUT_DIV) {
+                $("#aboutDiv").animate({ top: '3000px' });
+                ABOUT_DIV = false;
+
+            }
+            if (LEARN_MORE_DIV) {
+                $("#learnMoreDiv").animate({ top: '3000px' });
+                LEARN_MORE_DIV = false;
+
+            }
+            if (LOGIN_IS_UP) {
+                $("#userLoginDiv").animate({ top: '3000px' });
+                LOGIN_IS_UP = false;
+
+            } else {
+                $("#userLoginDiv").animate({ top: '160px' });
+                LOGIN_IS_UP = true;
+            }
         }
 
-        if (ABOUT_DIV) {
-            $("#aboutDiv").animate({ top: '3000px' });
-            ABOUT_DIV = false;
 
-        }
-        if (LEARN_MORE_DIV) {
-            $("#learnMoreDiv").animate({ top: '3000px' });
-            LEARN_MORE_DIV = false;
-
-        } 
-
-
-
-        if (LOGIN_IS_UP) {
-            $("#userLoginDiv").animate({ top: '3000px' });
-            LOGIN_IS_UP = false;
-
-        } else {
-            $("#userLoginDiv").animate({ top: '160px' });
-            LOGIN_IS_UP = true;
-        }
         e.stopPropagation();
     });
 
@@ -63,6 +73,14 @@ $(function () {
         if (ABOUT_DIV) {
             $("#aboutDiv").animate({ top: '3000px' });
             ABOUT_DIV = false;
+            $("#chatDiv").animate({ top: '3000px' });
+            raise_chat = false;
+            CHAT_IS_UP = false;
+        } 
+
+        if (SHOW_ITEM_DIV) {
+            $("#showItemDiv").animate({ top: '3000px' });
+            SHOW_ITEM_DIV = false;
             $("#chatDiv").animate({ top: '3000px' });
             raise_chat = false;
             CHAT_IS_UP = false;
@@ -119,6 +137,17 @@ $(function () {
 
         }
 
+        if (SHOW_ITEM_DIV) {
+            $("#showItemDiv").animate({ top: '3000px' });
+            SHOW_ITEM_DIV = false;
+        }
+
+
+        if (LOGIN_IS_UP) {
+            $("#userLoginDiv").animate({ top: '3000px' });
+            LOGIN_IS_UP = false;
+        }
+
         if (CHAT_IS_UP) {
             $("#chatDiv").animate({ top: '3000px' });
 
@@ -168,7 +197,7 @@ $(function () {
     $("#finish_save_btn").click(function () {
         console.log("finish_save");
         $("#newItemDiv").animate({ top: '3000px' });
-        CAM_DIV = false;
+        NEW_ITEM_DIV = false;
     });
 
     $("#open_camera_btn").click(function () {
@@ -183,4 +212,51 @@ $(function () {
         }
     });
 
+    $("#show_map_btn").click(function () {
+
+        if (ABOUT_DIV) {
+            $("#aboutDiv").animate({ top: '3000px' });
+            ABOUT_DIV = false;
+            $("#chatDiv").animate({ top: '3000px' });
+            CHAT_IS_UP = false;
+        }
+        if (LEARN_MORE_DIV) {
+            $("#learnMoreDiv").animate({ top: '3000px' });
+            LEARN_MORE_DIV = false;
+            $("#chatDiv").animate({ top: '3000px' });
+            CHAT_IS_UP = false;
+        }
+
+        if (CHAT_IS_UP) {
+            $("#chatDiv").animate({ top: '3000px' });
+
+            CHAT_IS_UP = false;
+
+        }
+
+
+    });
+
+    $("#show_item_exit_btn").click(function () {
+            $("#showItemDiv").animate({ top: '3000px' });
+            SHOW_ITEM_DIV = false;
+        });
+    
 });
+
+
+function show_item_on_marker_click(e, mapo_item) {
+
+    //$("#showItemDiv")
+    console.log("showItemDiv " + e + " " + mapo_item);
+
+    $('#show_item_user_name').text(mapo_item.user);
+    $('#show_item_date').text(return_time_string_from_timestamp(mapo_item.time));
+    //$('#show_item_img').attr('src', GET_IMAGE_FROM_ID_URL + mapo_item.id);
+    $('#show_item_img').attr('src', GET_IMAGE_FROM_ID_URL + "fakeItem.png");
+    $('#show_item_text').text(mapo_item.text);
+
+    $("#showItemDiv").animate({ top: '160px' });
+    SHOW_ITEM_DIV = true;
+
+}
