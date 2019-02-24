@@ -5,6 +5,7 @@ var POST_NEW_ITEM_URL = "https://mystuffapp.eu-gb.mybluemix.net/new_item";
 var GET_ITEMS_FROM_DB_URL = "https://mystuffapp.eu-gb.mybluemix.net/get_items";
 var GET_IMAGE_FROM_ID_URL = "assets/";
 
+var NEW_ITEM_TYPE = "sticker13";
 
 var mymap = null;
 
@@ -134,6 +135,80 @@ function get_mapo_item_by_id(mapo_id) {
     return null;
 
 }
+
+function set_current_new_item_type(item_type){
+
+    NEW_ITEM_TYPE = item_type;
+}
+
+function convert_sticker_name_to_display_name(sticker_name) {
+
+    item_type = "Text";
+
+    switch (sticker_name) {
+
+        case ("sticker01"):
+            item_type = "Electric Applience";
+            break;
+
+        case ("sticker02"):
+            item_type = "Clothes";
+            break;
+
+        case ("sticker03"):
+            item_type = "Carpet";
+            break;
+
+        case ("sticker04"):
+            item_type = "Sofa";
+            break;
+
+
+        case ("sticker05"):
+            item_type = "Wood";
+            break;
+
+
+        case ("sticker06"):
+            item_type = "Mattress ";
+            break;
+
+        case ("sticker07"):
+            item_type = "Books";
+            break;
+
+        case ("sticker08"):
+            item_type = "Sound system";
+            break;
+
+        case ("sticker09"):
+            item_type = "Toys";
+            break;
+
+        case ("sticker10"):
+            item_type = "Dirt";
+            break;
+
+
+        case ("sticker11"):
+            item_type = "Shelves ";
+            break;
+
+
+        case ("sticker12"):
+            item_type = "Dinnerware";
+            break;
+
+
+        default:
+            item_type = "Text";
+            break;
+    }
+
+    return item_type;
+
+}
+
 
 
 
@@ -319,7 +394,6 @@ function clear_map_markers() {
 function return_time_string_from_timestamp(timestamp) {
     return new Date((timestamp * 1)).toLocaleString();
 }
-
 
 function return_chat_element_from_mapo_item(mapo_item) {
 

@@ -63,45 +63,59 @@
 
     <div id="newItemDiv">
         <textarea id="new_item_texterea" rows="4" cols="40"></textarea>
+        <br />
+        <div id="new_item_type_title_div">
+            <center>
+                <h2 id="new_item_type_title">
+                    Text
+                </h2>
+            </center>
+        </div>
 
-        <div class="container">
+        <div class="container" id="item_types_selector">
             <div class="row">
-                <div class="col-sm-4">
-                    <input type="image" src="assets/sticker01.png" itemType="01" id="b01" class="itemSelectorButtons" />
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker01.png" itemType="sticker01" id="b01" class="itemSelectorButtons" />
                 </div>
-                <div class="col-sm-4">
-                    <input type="image" src="assets/sticker02.png" itemType="02" id="b02" class="itemSelectorButtons" />
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker02.png" itemType="sticker02" id="b02" class="itemSelectorButtons" />
                 </div>
-                <div class="col-sm-4">
-                    <input type="image" src="assets/sticker03.png" itemType="03" id="b03" class="itemSelectorButtons" />
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker03.png" itemType="sticker03" id="b03" class="itemSelectorButtons" />
+                </div>
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker04.png" itemType="sticker04" id="b04" class="itemSelectorButtons" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker05.png" itemType="sticker05" id="b05" class="itemSelectorButtons" />
+                </div>
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker06.png" itemType="sticker06" id="b06" class="itemSelectorButtons" />
+                </div>
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker07.png" itemType="sticker07" id="b07" class="itemSelectorButtons" />
+                </div>
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker08.png" itemType="sticker08" id="b08" class="itemSelectorButtons" />
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-sm-4">
-                    <input type="image" src="assets/sticker04.png" itemType="04" id="b04" class="itemSelectorButtons" />
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker09.png" itemType="sticker09" id="b09" class="itemSelectorButtons" />
                 </div>
-                <div class="col-sm-4">
-                    <input type="image" src="assets/sticker05.png" itemType="05" id="b05" class="itemSelectorButtons" />
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker10.png" itemType="sticker10" id="b10" class="itemSelectorButtons" />
                 </div>
-                <div class="col-sm-4">
-                    <input type="image" src="assets/sticker06.png" itemType="06" id="b06" class="itemSelectorButtons" />
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker11.png" itemType="sticker11" id="b11" class="itemSelectorButtons" />
                 </div>
-            </div>
-
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <input type="image" src="assets/sticker07.png" itemType="07" id="b07" class="itemSelectorButtons" />
-                </div>
-                <div class="col-sm-4">
-                    <input type="image" src="assets/sticker08.png" itemType="08" id="b08" class="itemSelectorButtons" />
-                </div>
-                <div class="col-sm-4">
-                    <input type="image" src="assets/sticker09.png" itemType="09" id="b09" class="itemSelectorButtons" />
+                <div class="col-sm-3">
+                    <input type="image" src="assets/sticker12.png" itemType="sticker12" id="b12" class="itemSelectorButtons" />
                 </div>
             </div>
-
         </div>
 
         <center>
@@ -118,18 +132,14 @@
 
     <div id="camDiv">
 
-        <div>
-
+        <div class="camera">
+            <center>
+                <video id="video"></video>
+            </center>
+            <br />
+            <center><div id="startbutton"></div></center>
+            <canvas id="canvas"></canvas>
         </div>
-
-        <center>
-            <div id="cam_click">
-
-
-
-            </div>
-        </center>
-
 
     </div>
 
@@ -231,6 +241,7 @@
 
     <script src="scripts/appScript.js"></script>
     <script src="scripts/mapScript.js"></script>
+    <script src="scripts/cameraScript.js"></script>
 
 </body>
 </html>

@@ -61,7 +61,7 @@ $(function () {
 
     });
 
-    $("#cam_click").click(function () {
+    $("#startbutton").click(function () {
             $("#camDiv").animate({ top: '3000px' });
             CAM_DIV = false;
     });
@@ -184,6 +184,9 @@ $(function () {
 
     $("#addNewDiv").click(function () {
         console.log("addNewDiv");
+
+        $("#open_camera_btn").attr("src", "assets/cam.png");
+
         $("#newItemDiv").animate({ top: '160px' });
             NEW_ITEM_DIV = true;
     });
@@ -241,7 +244,31 @@ $(function () {
             $("#showItemDiv").animate({ top: '3000px' });
             SHOW_ITEM_DIV = false;
         });
-    
+
+    $(".itemSelectorButtons").click(function () {
+
+        $(".itemSelectorButtons").each(function () {
+
+            $(this).removeClass("selected_item_type")
+
+        });
+
+        if (NEW_ITEM_TYPE != $(this).attr("itemType")) {
+
+            $(this).addClass("selected_item_type")
+            set_current_new_item_type($(this).attr("itemType"));
+            
+
+        } else {
+            NEW_ITEM_TYPE = "stick13"
+            
+        }
+
+        $("#new_item_type_title").text(convert_sticker_name_to_display_name(NEW_ITEM_TYPE));
+        
+
+    });
+
 });
 
 
