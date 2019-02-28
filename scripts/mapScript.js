@@ -3,9 +3,12 @@ var USER_LOCATION = { lat: null, lon: null };
 
 var POST_NEW_ITEM_URL = "https://mystuffapp.eu-gb.mybluemix.net/new_item";
 var GET_ITEMS_FROM_DB_URL = "https://mystuffapp.eu-gb.mybluemix.net/get_items";
-var GET_IMAGE_FROM_ID_URL = "assets/";
+var GET_IMAGE_FROM_ID_URL = "http://mapo-app-dev.mybluemix.net/image/";
+var POST_NEW_IMAGE = "http://mapo-app-dev.mybluemix.net/uploadFile/";
 
 var NEW_ITEM_TYPE = "sticker13";
+
+var NEW_IMAGE_DATA = null;
 
 var mymap = null;
 
@@ -55,7 +58,13 @@ function convert_location_string_to_obj(locString) {
 
 }
 
+function convert_location_obj_to_string(locObj) {
 
+    locationString = locObj.lat + ", " + locObj.lon;
+
+    return locationString;
+
+}
 
 
 
@@ -216,11 +225,11 @@ function convert_sticker_name_to_display_name(sticker_name) {
 function send_New_Item_To_Db(map_item) {
 
     newItem = {
-        text: $("#new_item_texterea").val(),///
+        text: map_item.text,
         type: map_item.type,
         location: map_item.location,
-        available: true,
-        flagged: false
+        //available: true,
+        //flagged: false
     }
 
     data_to_send = JSON.stringify(newItem);
@@ -229,7 +238,7 @@ function send_New_Item_To_Db(map_item) {
         type: 'POST',
         url: POST_NEW_ITEM_URL,
         data: data_to_send,
-        headers: { "Authorization": "Basic YXBwMDE6YXBwMDEyMw==" },
+        //headers: { "Authorization": "Basic YXBwMDE6YXBwMDEyMw==" },
         contentType: 'application/json',
         success: success_Post_item_to_db_func
     });
@@ -238,9 +247,39 @@ function send_New_Item_To_Db(map_item) {
 
 function success_Post_item_to_db_func(res) {
 
-    console.log("data returned from db ok!!" + res);
+    console.log("data returned from db ok!!" + res._id);
+
+    send_image_to_db(res._id);
+}
+
+
+
+
+
+
+
+////THIS IS THE IMAGE POST REQUEST
+
+function send_image_to_db(image_id) {
+
+    if (NEW_IMAGE_DATA != null) {
+        console.log("sending image to db");
+
+        var ajax = new XMLHttpRequest();
+        ajax.open("POST", POST_NEW_IMAGE, true);
+        ajax.setRequestHeader("Content-Disposition", 'form-data; name = "file"; filename = "' + image_id+'"');
+        ajax.send(NEW_IMAGE_DATA);
+    }
+    
 
 }
+
+
+
+
+
+
+
 
 function get_Data_From_Db(user_location) {
 

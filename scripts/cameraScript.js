@@ -108,6 +108,11 @@
             photo.setAttribute('src', data);
             photo.setAttribute('heigth', height / 2);
             photo.setAttribute('width', width / 2);
+
+            
+            NEW_IMAGE_DATA = data;
+
+
         } else {
             clearphoto();
         }

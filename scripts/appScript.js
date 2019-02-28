@@ -201,6 +201,15 @@ $(function () {
         console.log("finish_save");
         $("#newItemDiv").animate({ top: '3000px' });
         NEW_ITEM_DIV = false;
+
+        new_item = {
+            text: $("#new_item_texterea").val(),
+            type: NEW_ITEM_TYPE,
+            location:convert_location_obj_to_string(USER_LOCATION)
+        }
+
+        send_New_Item_To_Db(new_item);
+
     });
 
     $("#open_camera_btn").click(function () {
@@ -280,7 +289,7 @@ function show_item_on_marker_click(e, mapo_item) {
     $('#show_item_user_name').text(mapo_item.user);
     $('#show_item_date').text(return_time_string_from_timestamp(mapo_item.time));
     //$('#show_item_img').attr('src', GET_IMAGE_FROM_ID_URL + mapo_item.id);
-    $('#show_item_img').attr('src', GET_IMAGE_FROM_ID_URL + "fakeItem.png");
+    $('#show_item_img').attr('src', GET_IMAGE_FROM_ID_URL + "corgies.jpg");
     $('#show_item_text').text(mapo_item.text);
 
     $("#showItemDiv").animate({ top: '160px' });
