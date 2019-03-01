@@ -4,7 +4,10 @@ var USER_LOCATION = { lat: null, lon: null };
 var POST_NEW_ITEM_URL = "https://mystuffapp.eu-gb.mybluemix.net/new_item";
 var GET_ITEMS_FROM_DB_URL = "https://mystuffapp.eu-gb.mybluemix.net/get_items";
 var GET_IMAGE_FROM_ID_URL = "http://mapo-app-dev.mybluemix.net/image/";
-var POST_NEW_IMAGE = "http://mapo-app-dev.mybluemix.net/uploadFile/";
+var POST_NEW_IMAGE_URL = "http://mapo-app-dev.mybluemix.net/uploadFile/";
+
+
+
 
 var NEW_ITEM_TYPE = "sticker13";
 
@@ -263,19 +266,35 @@ function success_Post_item_to_db_func(res) {
 function send_image_to_db(image_id) {
 
     if (NEW_IMAGE_DATA != null) {
-        console.log("sending image to db");
+        console.log("sending image to db " + image_id);
 
-        var ajax = new XMLHttpRequest();
-        ajax.open("POST", POST_NEW_IMAGE, true);
-        ajax.setRequestHeader("Content-Disposition", 'form-data; name = "file"; filename = "' + image_id+'"');
-        ajax.send(NEW_IMAGE_DATA);
+        var formData = new FormData();
+        formData.append(image_id, blobFile);
+
+
+        $.ajax({
+            type: 'POST',
+            url: POST_NEW_IMAGE_URL,
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: success_Post_image_to_db_func
+        });
+
+        //ajax.setRequestHeader("content-type", 'multipart/form-data');
+        //ajax.setRequestHeader("Content-Disposition", 'form-data; name = "file"; filename = "' + image_id+'"');
+
     }
     
 
 }
 
 
+function success_Post_image_to_db_func(res) {
 
+    console.log("image upload ok!" + res);
+
+}
 
 
 
