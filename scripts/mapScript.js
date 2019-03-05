@@ -1,10 +1,10 @@
 ﻿var GLOBAL_LOCATION = { lat: 32.0466879, lon: 34.7796028 };
 var USER_LOCATION = { lat: null, lon: null };
 
-var POST_NEW_ITEM_URL = "https://mystuffapp.eu-gb.mybluemix.net/new_item";
-var GET_ITEMS_FROM_DB_URL = "https://mystuffapp.eu-gb.mybluemix.net/get_items";
-var GET_IMAGE_FROM_ID_URL = "http://mapo-app-dev.mybluemix.net/image/";
-var POST_NEW_IMAGE_URL = "http://mapo-app-dev.mybluemix.net/uploadFile/";
+var POST_NEW_ITEM_URL = "./new_item";
+var GET_ITEMS_FROM_DB_URL = "./get_items";
+var GET_IMAGE_FROM_ID_URL = "./image/";
+var POST_NEW_IMAGE_URL = "./uploadFile/";
 
 
 
@@ -250,9 +250,9 @@ function send_New_Item_To_Db(map_item) {
 
 function success_Post_item_to_db_func(res) {
 
-    console.log("data returned from db ok!!" + res._id);
+    console.log("data returned from db ok!! " + JSON.parse(res)._id);
 
-    send_image_to_db(res._id);
+    send_image_to_db(JSON.parse(res)._id);
 }
 
 
@@ -269,7 +269,10 @@ function send_image_to_db(image_id) {
         console.log("sending image to db " + image_id);
 
         var formData = new FormData();
-        formData.append(image_id, blobFile);
+
+        newBlob = new Blob([NEW_IMAGE_DATA], { type: "image/jpeg"});
+
+        formData.append("file", newBlob, image_id);
 
 
         $.ajax({
@@ -290,15 +293,14 @@ function send_image_to_db(image_id) {
 }
 
 
+
+
+
 function success_Post_image_to_db_func(res) {
 
     console.log("image upload ok!" + res);
 
 }
-
-
-
-
 
 function get_Data_From_Db(user_location) {
 
@@ -324,7 +326,8 @@ function get_Data_From_Db(user_location) {
 function success_Get_func(res) {
 
     console.log("GET from db ok!!");
-    result_items_from_server = res;
+
+    result_items_from_server = JSON.parse(res);
     pupulate_app_data();
 }
 
