@@ -1,0 +1,19 @@
+﻿html {
+    margin: 0px;
+}
+
+body {
+    overflow: hidden;
+    margin: 0;
+    font-family: 'Varela Round', sans-serif;
+}
+
+#mapo-glob {
+    margin: 0;
+    width: 100vw;
+   
+    overflow: hidden;
+}
+
+#mapo-app {
+}

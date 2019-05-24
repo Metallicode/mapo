@@ -1,0 +1,9 @@
+﻿#mapo-show-image-element {
+    position: fixed;
+    top: 200vh;
+    width: 105vw;
+    height: 90vh;
+    z-index: 6;
+    background-color: ghostwhite;
+    transform: scale(1.1,1.0);
+}

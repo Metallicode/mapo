@@ -1,0 +1,77 @@
+﻿#camDiv {
+    width: 100vw;
+    height: 90vh;
+    z-index: 4;
+    position: fixed;
+    top: 200vh;
+    background-color: snow;
+    font-size:2em;
+}
+
+
+#camera-flip-btn-control {
+    position: absolute;
+    width:150px;
+    height:150px;
+    left:5vw;
+    bottom:5vh;
+    z-index: 4;
+    opacity:0.7;
+}
+
+#camera-click-button {
+    background-color: #ff43a8;
+    position: absolute;
+    bottom: 7vh;
+    left: 40vw;
+    font-size: 8em;
+    margin-bottom: 15px;
+    height: 160px;
+    width: 160px;
+    padding: 25px;
+    border-radius: 50%;
+    border: 5px solid black;
+    color: #ede8f4;
+}
+
+#video {
+    /*margin:20px;*/
+
+    left: 0px;
+    position: absolute;
+    height: 90vh;
+    transform: rotateY(180deg);
+    -webkit-transform: rotateY(180deg); /* Safari and Chrome */
+    -moz-transform: rotateY(180deg);
+}
+@media only screen and (max-device-width: 700px) {
+    #video {
+        
+    }
+}
+
+#canvas {
+    position: fixed;
+    top: 200vh;
+
+}
+#low_res_canvas {
+    position: fixed;
+    top: 200vh;
+}
+
+#camera-preview {
+    width: 120px;
+    height: 120px;
+}
+
+#camera-cancel-btn-control {
+    float: right;
+    font-size: 3em;
+    padding: 35px;
+    width: 130px;
+
+
+    right:0px;
+    position: absolute;
+}

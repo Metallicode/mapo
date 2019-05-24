@@ -1,0 +1,62 @@
+﻿#mapo-navigator {
+    display: grid;
+    justify-content: space-between;
+    align-content: center;
+    height: 10vh;
+    position:absolute;
+    background-color:ghostwhite;
+    z-index:3;
+    width:100vw;
+    opacity:0.87;
+}
+
+
+#mapo-navigator-filter {
+    margin: 15px;
+    grid-column-start: 2;
+    width: 100px;
+    height: 100px;
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+#mapo-navigator-map-chat-switcher {
+    margin: 15px;
+    grid-column-start: 3;
+    width: 100px;
+    height: 100px;
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+
+#mapo-navigator-private-message {
+    margin: 15px;
+    grid-column-start: 4;
+    width: 100px;
+    height: 100px;
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+
+
+#mapo-navigator-appLogo {
+    margin: 15px;
+    grid-column-start: 1;
+    width: 140px;
+    height: 140px;
+    margin-left: 40px;
+  
+}
+
+#mapo-navigator-userThumbnail {
+    margin: 15px;
+    grid-column-start: 5;
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+    margin-top: 30px;
+    border-radius: 25px;
+}
+

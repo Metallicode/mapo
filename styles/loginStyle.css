@@ -1,0 +1,106 @@
+﻿#user-login-element {
+    z-index: 4;
+    position: absolute;
+    top: 150vh;
+    background-color: #0094db;
+    width: 100vw;
+    height: 90vh;
+    opacity: 0.91;
+    text-align: center;
+    font-size: 3.5em;
+}
+
+#login-btn-login-text{
+
+    color:snow;
+}
+
+#login-btn-logout-a {
+    color: snow;
+}
+
+
+#login-btn-logout {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.user-location-obj-row-title {
+    position: absolute;
+    left: 8vw;
+    font-size: 1em;
+    margin-top: 0.4em;
+}
+
+
+
+.user-location-obj-row-input {
+    position: absolute;
+    left: 8vw;
+    font-size: 1em;
+    margin-top: 15px;
+    width:500px;
+}
+
+.user-location-obj-row {
+    border-radius: 15px;
+    padding-bottom: 40px;
+    padding-top:10px;
+    border: 10px solid snow;
+    margin-top: 2vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    height: 70px;
+    background-color: #0094db;
+}
+
+.selectedLocation {
+    background-color: #ff43a8;
+    border: 10px solid black;
+}
+
+.user-location-obj-row-image {
+    right: 8vw;
+    
+    position: absolute;
+    width:100px;
+    height:100px;
+}
+
+#login-anonymous-div {
+    padding: 10px;
+    text-align: center;
+    vertical-align: central;
+}
+
+#login-anonymous-checkbox {
+    margin-left:7vw;
+    transform: scale(6, 6);
+}
+
+.login_ok_btn {
+    font-size: 3em;
+}
+
+
+#login-btn-control {
+
+    float:left;
+
+}
+
+#login-cancel-btn-control {
+    position:absolute;
+    top:0px;
+    right:0px;
+    padding:10px;
+    width:130px;
+    border-radius:15px;
+}
+
+.abcRioButtonContentWrapper {
+    background-color: #ff43a8;
+    color: white;
+
+}
+

@@ -1,0 +1,149 @@
+﻿#mapo-chat {
+    width: 100vw;
+    height: 80vh;
+    z-index: 1;
+    position: fixed;
+    top: 150vh;
+
+    opacity: 0.94;
+    overflow-y: scroll;
+    background-image: url("https://raw.githubusercontent.com/Metallicode/mapo/master/assets/mapo-image-loading.gif");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.chat-item-type-icon {
+    width: 80px;
+    margin-right: 20px;
+}
+
+.chatItem {
+    padding: 30px;
+    /*border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;*/
+    background-color: ghostwhite;
+    /*width: 87vw;*/
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /*margin-left: 3vw;
+    margin-right: 3vw;*/
+    word-wrap: break-word;
+}
+
+.chat_item_image {
+    width: 100%;
+    height: 24vh;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius: 4px;
+    background-size: cover;
+}
+
+.chat_item_image_div {
+    text-align: center;
+}
+
+.mapo-chat-item-private-message-text {
+    border-radius: 15px;
+    margin-top: 110px;
+    top: 5vh;
+    left: 0px;
+    width: 100%;
+    margin-bottom: 15px;
+    height: 0vh;
+    font-size: 1.5em;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.mapo-chat-item-private-message-text-div{
+
+   
+}
+
+.selected_chat_item {
+    background-color: skyblue;
+}
+
+.chatItemHeaders {
+    color: #006aba;
+   
+}
+
+.chatItemMsgText {
+    margin-top: 5px;
+    margin-bottom:5px;
+    letter-spacing: 0.04em;
+}
+
+.chatItemTime {
+    float: right;
+    font-size: 2.8em;
+    margin-top:20px;
+}
+
+.chatItemUserName {
+    font-size: 2.8em;
+    position: relative;
+    top: -20px;
+}
+
+.mapo-chat-item-controls {
+    margin-bottom: 20px;
+}
+
+.mapo-item-vote-container {
+    position:absolute;
+    left:4vw;
+
+
+}
+
+.chat_prev_img {
+    position: absolute;
+    left: 40vw;
+
+}
+
+.mapo-item-voter{
+
+    margin-left:10px;
+    height:90px;
+    width:90px;
+}
+
+.mapo-chat-item-menu {
+    position: absolute;
+    right: 4vw;
+    height: 80px;
+    width: 80px;
+}
+
+.mapo-item-voter-score {
+    font-size: 1.5em;
+ 
+}
+
+
+#mapo-chat-item-report-item {
+    margin: 5vw;
+    background-color: #be2222;
+    float: left;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+#mapo-chat-item-message-user {
+    /*background-color: #73ddff;*/
+    float:right;
+    border-radius: 50%;
+    margin: 5vw;
+    width: 100px;
+    height: 100px;
+}
+
+#empty-chat-place-holder {
+    height: 30vh;
+}
